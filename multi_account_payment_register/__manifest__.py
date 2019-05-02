@@ -22,6 +22,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['account'],
+    'images': ['images/main_screenshot.png'],
 
     # always loaded
     'data': [
