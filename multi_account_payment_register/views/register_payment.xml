@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- To set a warning in sale order while change the price in sale order lines -->
+        <record id="view_account_payment_invoice_form_imherit" model="ir.ui.view">
+            <field name="name">account.payment.invoice.form.imherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='writeoff_account_id']" position="replace">
+                    <field name="account_multiple_ids" widget="one2many_list"
+                           attrs="{'invisible': [('payment_difference_handling','=','open')], 'required': [('payment_difference_handling', '=', 'reconcile')]}">
+                        <tree editable="bottom">
+                            <field name="account_id"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                    <field name="sum_account_multiple_ids" attrs="{'invisible': [('payment_difference_handling','=','open')], 'required': [('payment_difference_handling', '=', 'reconcile')]}"/>
+                    <br></br>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
